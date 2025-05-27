@@ -1,0 +1,15 @@
+name: Hardcoded Token Example
+
+on: [push]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Python Script
+        run: |
+          echo "import requests" > main.py
+          echo "response = requests.get('https://httpbin.org/bearer', headers={'Authorization': 'Bearer your_token_here'})" >> main.py
+          echo "print(response.status_code)" >> main.py
+          python3 main.py
